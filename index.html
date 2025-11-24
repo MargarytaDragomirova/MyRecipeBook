@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Recipe Book</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/phosphor-icons"></script>
+  </head>
+  <body class="min-h-screen">
+    <div class="max-w-7xl mx-auto p-4 md:p-8">
+      <header
+        class="flex justify-between items-center mb-8 pb-4 border-b border-gray-200"
+      >
+        <h1 class="text-3xl font-extrabold text-gray-900 flex items-center">
+          <i class="ph-book-open text-orange-500 mr-2"></i>
+          My Recipe Book
+        </h1>
+        <a
+          href="add.html"
+          class="py-2 px-4 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-lg transition duration-200 shadow-sm"
+        >
+          <i class="ph-plus-circle-fill mr-1"></i> Add Recipe
+        </a>
+      </header>
+
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search recipes..."
+        class="w-full py-2 px-4 mb-6 border rounded-lg shadow-sm"
+      />
+
+      <div
+        id="recipes-grid"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      ></div>
+      <p id="no-recipes-message" class="text-center text-gray-500 mt-10 hidden">
+        No recipes found.
+      </p>
+    </div>
+
+    <script type="module" src="scripts/main.js"></script>
+    <script type="module">
+      import { renderRecipes, loadRecipesFromStorage } from "./scripts/main.js";
+      loadRecipesFromStorage();
+      renderRecipes();
+      document
+        .getElementById("search-input")
+        .addEventListener("keyup", renderRecipes);
+    </script>
+  </body>
+</html>

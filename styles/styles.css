@@ -1,0 +1,38 @@
+/* Basic body */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f7f9fb;
+}
+
+/* Recipe vitals meters */
+.vitals-meter {
+  height: 10px;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.vitals-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* Difficulty slider */
+#difficulty {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 12px;
+  background: #e5e7eb;
+  cursor: pointer;
+  outline: none;
+}
+#difficulty::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ef9f15;
+  border: 3px solid #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
