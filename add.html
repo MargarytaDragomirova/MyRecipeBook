@@ -4,49 +4,82 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Recipe</title>
+
     <link rel="stylesheet" href="styles/styles.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/phosphor-icons"></script>
   </head>
-  <body class="min-h-screen">
-    <div class="max-w-3xl mx-auto p-4 md:p-8">
-      <h1 class="text-3xl font-bold mb-6">Add New Recipe</h1>
-      <form id="add-recipe-form" class="space-y-6">
-        <input
-          type="text"
-          id="title"
-          placeholder="Recipe Title"
-          required
-          class="w-full p-3 border rounded-lg"
-        />
-        <input
-          type="url"
-          id="imageUrl"
-          placeholder="Image URL"
-          required
-          class="w-full p-3 border rounded-lg"
-        />
 
+  <body class="min-h-screen bg-gray-50">
+    <div class="max-w-3xl mx-auto p-4 md:p-8">
+      <h1 class="text-3xl font-bold mb-6 flex items-center">
+        <i class="ph-plus-circle text-orange-500 mr-2"></i> Add New Recipe
+      </h1>
+
+      <form
+        id="add-recipe-form"
+        class="space-y-8 bg-white p-6 rounded-xl shadow-lg"
+      >
+        <!-- TITLE -->
+        <div>
+          <label class="block font-semibold mb-1">Recipe Title</label>
+          <input
+            type="text"
+            id="title"
+            required
+            class="w-full p-3 border rounded-lg focus:ring-orange-400 focus:border-orange-400"
+          />
+        </div>
+
+        <!-- IMAGE PICKER ONLY -->
+        <div class="space-y-3">
+          <label class="block font-semibold">Recipe Image</label>
+
+          <input
+            type="file"
+            id="imagePicker"
+            accept="image/*"
+            required
+            class="w-full border p-3 rounded-lg cursor-pointer"
+          />
+
+          <img
+            id="imagePreview"
+            class="w-full max-h-64 object-cover rounded-lg shadow hidden"
+          />
+
+          <!-- This hidden field will store the Base64 image -->
+          <input type="hidden" id="imageUrl" required />
+        </div>
+
+        <!-- TIMES + DIFFICULTY -->
         <div class="grid grid-cols-3 gap-4">
-          <input
-            type="number"
-            id="prepTime"
-            min="1"
-            value="15"
-            placeholder="Prep Time"
-            required
-            class="p-3 border rounded-lg"
-          />
-          <input
-            type="number"
-            id="cookTime"
-            min="0"
-            value="30"
-            placeholder="Cook Time"
-            required
-            class="p-3 border rounded-lg"
-          />
           <div>
+            <label class="font-semibold">Prep Time (min)</label>
+            <input
+              type="number"
+              id="prepTime"
+              min="1"
+              value="15"
+              required
+              class="w-full p-3 border rounded-lg"
+            />
+          </div>
+
+          <div>
+            <label class="font-semibold">Cook Time (min)</label>
+            <input
+              type="number"
+              id="cookTime"
+              min="0"
+              value="30"
+              required
+              class="w-full p-3 border rounded-lg"
+            />
+          </div>
+
+          <div>
+            <label class="font-semibold">Difficulty</label>
             <input
               type="range"
               id="difficulty"
@@ -56,37 +89,67 @@
               oninput="this.nextElementSibling.value=this.value"
               class="w-full"
             />
-            <output class="block text-center">3</output>
+            <output class="block text-center font-semibold">3</output>
           </div>
         </div>
 
-        <!-- Ingredients -->
-        <div class="mb-8 p-4 bg-gray-50 rounded-lg">
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Ingredients</h3>
-          <textarea
-            id="ingredients-input"
-            placeholder="Enter ingredients separated by commas"
-            rows="4"
-            required
-            class="w-full p-3 border rounded-lg"
-          ></textarea>
+        <!-- INGREDIENTS -->
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <label class="text-xl font-semibold text-gray-800 mb-3 block">
+            Ingredients
+          </label>
+
+          <div class="flex gap-2 mb-3">
+            <input
+              type="text"
+              id="ingredient-input"
+              placeholder="Add ingredient..."
+              class="flex-1 p-2 border rounded-lg"
+            />
+            <button
+              type="button"
+              id="add-ingredient-btn"
+              class="bg-orange-500 text-white px-4 rounded-lg"
+            >
+              Add
+            </button>
+          </div>
+
+          <div id="ingredients-list" class="flex flex-wrap gap-2"></div>
+
+          <input type="hidden" id="ingredients-hidden" required />
         </div>
 
-        <!-- Instructions -->
-        <div class="mb-8 p-4 bg-gray-50 rounded-lg">
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Instructions</h3>
-          <textarea
-            id="steps-input"
-            placeholder="Enter each step on a new line"
-            rows="6"
-            required
-            class="w-full p-3 border rounded-lg"
-          ></textarea>
+        <!-- STEPS -->
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <label class="text-xl font-semibold text-gray-800 mb-3 block">
+            Steps
+          </label>
+
+          <div class="flex gap-2 mb-3">
+            <input
+              type="text"
+              id="step-input"
+              placeholder="Add step..."
+              class="flex-1 p-2 border rounded-lg"
+            />
+            <button
+              type="button"
+              id="add-step-btn"
+              class="bg-orange-500 text-white px-4 rounded-lg"
+            >
+              Add
+            </button>
+          </div>
+
+          <ol id="steps-list" class="list-decimal pl-5 space-y-1"></ol>
+
+          <input type="hidden" id="steps-hidden" required />
         </div>
 
         <button
           type="submit"
-          class="bg-orange-500 text-white px-6 py-3 rounded-lg"
+          class="bg-orange-500 text-white px-6 py-3 rounded-lg w-full font-semibold text-lg"
         >
           Save Recipe
         </button>
