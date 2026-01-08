@@ -5,6 +5,7 @@ export let recipes = [];
 export function loadRecipesFromStorage() {
   const stored = localStorage.getItem(RECIPES_STORAGE_KEY);
   recipes = stored ? JSON.parse(stored) : [];
+  return recipes;
 }
 
 // Save recipes

@@ -1,105 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Recipe Book</title>
 
-    <link rel="stylesheet" href="styles/styles.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Recipe Book</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/phosphor-icons"></script>
-  </head>
+  <link rel="stylesheet" href="styles/styles.css" />
 
-  <body class="min-h-screen pb-28">
-    <!-- page bottom spacing so footer doesn't overlap -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/phosphor-icons"></script>
+</head>
 
-    <div class="max-w-7xl mx-auto p-4 md:p-8">
-      <header
-        class="flex justify-between items-center mb-8 pb-4 border-b border-gray-200"
-      >
-        <h1 class="text-3xl font-extrabold text-gray-900 flex items-center">
-          <i class="ph-book-open text-orange-500 mr-2"></i>
+<body class="min-h-screen pb-28">
+  <!-- page bottom spacing so footer doesn't overlap -->
+
+  <div class="max-w-7xl mx-auto p-4 md:p-8 mb-10">
+    <header class="flex justify-between items-center mb-8 pb-4 border-b border-gray-200">
+      <h1 class="text-3xl font-extrabold text-gray-900 flex items-center">
+        <i class="ph-book-open text-orange-500 mr-2"></i>
+        <a href="index.html">
           My Recipe Book
-        </h1>
-
-        <a
-          href="add.html"
-          class="py-2 px-4 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-lg transition duration-200 shadow-sm"
-        >
+        </a>
+      </h1>
+      <div>
+        <a href="gallery.html"
+          class="mx-2 py-2 px-4 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-lg transition duration-200 shadow-sm">
+          <i class="ph-image-fill mr-1"></i>Gallery
+        </a>
+        <a href="add.html"
+          class="mx-2 py-2 px-4 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-lg transition duration-200 shadow-sm">
           <i class="ph-plus-circle-fill mr-1"></i> Add Recipe
         </a>
-      </header>
-
-      <input
-        type="text"
-        id="search-input"
-        placeholder="Search recipes..."
-        class="w-full py-2 px-4 mb-6 border rounded-lg shadow-sm"
-      />
-
-      <div
-        id="recipes-grid"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-      ></div>
-
-      <p id="no-recipes-message" class="text-center text-gray-500 mt-10 hidden">
-        No recipes found.
-      </p>
-    </div>
-
-    <!-- Footer inside body -->
-    <footer class="fixed bottom-0 left-0 w-full border-t bg-white shadow-md">
-      <div
-        class="container mx-auto flex flex-col items-center justify-between px-6 py-4 lg:flex-row"
-      >
-        <a href="#" class="flex items-center gap-2">
-          <i class="ph-book-open text-orange-500 text-xl"></i>
-        </a>
-
-        <div
-          class="flex flex-wrap items-center justify-center gap-4 mt-4 lg:gap-6 lg:mt-0"
-        >
-          <a
-            href="#"
-            class="text-sm text-gray-700 transition-colors duration-200 hover:text-black"
-          >
-            Kurumsal
-          </a>
-          <a
-            href="#"
-            class="text-sm text-gray-700 transition-colors duration-200 hover:text-black"
-          >
-            Ürünler
-          </a>
-          <a
-            href="#"
-            class="text-sm text-gray-700 transition-colors duration-200 hover:text-black"
-          >
-            Marketler
-          </a>
-          <a
-            href="#"
-            class="text-sm text-gray-700 transition-colors duration-200 hover:text-black"
-          >
-            İletişim
-          </a>
-        </div>
-
-        <p class="mt-4 text-sm text-gray-600 lg:mt-0">© 2025 My Recipe Book</p>
       </div>
-    </footer>
+    </header>
 
-    <!-- scripts -->
-    <script type="module">
-      import { loadRecipesFromStorage, renderRecipes } from "./scripts/main.js";
+    <input type="text" id="search-input" placeholder="Search recipes..."
+      class="w-full py-2 px-4 mb-6 border rounded-lg shadow-sm" />
 
-      loadRecipesFromStorage();
-      renderRecipes();
+    <div id="recipes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
 
-      document
-        .getElementById("search-input")
-        .addEventListener("keyup", renderRecipes);
-    </script>
-  </body>
+    <p id="no-recipes-message" class="text-center text-gray-500 mt-10 hidden">
+      No recipes found.
+    </p>
+  </div>
+
+  <!-- Footer inside body -->
+  <footer class="fixed bottom-0 left-0 w-full border-t bg-white shadow-md">
+    <div class="container mx-auto flex flex-col items-center justify-between px-6 py-4 lg:flex-row">
+      <a href="#" class="flex items-center gap-2">
+        <i class="ph-book-open text-orange-500 text-xl"></i>
+      </a>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 mt-4 lg:gap-6 lg:mt-0">
+        <a href="contact.html" class="text-sm text-gray-700 transition-colors duration-200 hover:text-black">
+          İletişim
+        </a>
+      </div>
+
+      <p class="mt-4 text-sm text-gray-600 lg:mt-0">© 2025 My Recipe Book</p>
+    </div>
+  </footer>
+
+  <!-- scripts -->
+  <script type="module">
+    import { loadRecipesFromStorage, renderRecipes } from "./scripts/main.js";
+
+    loadRecipesFromStorage();
+    renderRecipes();
+
+    document
+      .getElementById("search-input")
+      .addEventListener("keyup", renderRecipes);
+  </script>
+</body>
+
 </html>

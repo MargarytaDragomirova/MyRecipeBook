@@ -1,162 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Recipe</title>
 
-    <link rel="stylesheet" href="styles/styles.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/phosphor-icons"></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Recipe</title>
 
-  <body class="min-h-screen bg-gray-50">
-    <div class="max-w-3xl mx-auto p-4 md:p-8">
-      <h1 class="text-3xl font-bold mb-6 flex items-center">
-        <i class="ph-plus-circle text-orange-500 mr-2"></i> Add New Recipe
+  <link rel="stylesheet" href="styles/styles.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/phosphor-icons"></script>
+</head>
+
+<body class="min-h-screen bg-gray-50">
+  <div class="max-w-7xl mx-auto p-8 pb-0">
+    <header class="flex justify-between items-center pb-4 border-b border-gray-200">
+      <h1 class="text-3xl font-extrabold text-gray-900 flex items-center">
+        <i class="ph-book-open text-orange-500 mr-2"></i>
+        <a href="index.html">
+          My Recipe Book
+        </a>
       </h1>
+      <div>
+        <a href="gallery.html"
+          class="mx-2 py-2 px-4 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-lg transition duration-200 shadow-sm">
+          <i class="ph-image-fill mr-1"></i>Gallery
+        </a>
+        <a href="add.html"
+          class="mx-2 py-2 px-4 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-lg transition duration-200 shadow-sm">
+          <i class="ph-plus-circle-fill mr-1"></i> Add Recipe
+        </a>
+      </div>
+    </header>
+  </div>
+  <div class="max-w-7xl mx-auto p-4 md:p-8 mb-10">
+    <h1 class="text-3xl font-bold mb-6 flex items-center justify-center">
+      <i class="ph-plus-circle text-orange-500 mr-2"></i> Add New Recipe
+    </h1>
 
-      <form
-        id="add-recipe-form"
-        class="space-y-8 bg-white p-6 rounded-xl shadow-lg"
-      >
-        <!-- TITLE -->
-        <div>
-          <label class="block font-semibold mb-1">Recipe Title</label>
-          <input
-            type="text"
-            id="title"
-            required
-            class="w-full p-3 border rounded-lg focus:ring-orange-400 focus:border-orange-400"
-          />
-        </div>
+    <form id="add-recipe-form" class="space-y-8 bg-white p-6 rounded-xl shadow-lg">
 
-        <!-- IMAGE PICKER ONLY -->
-        <div class="space-y-3">
-          <label class="block font-semibold">Recipe Image</label>
-
-          <input
-            type="file"
-            id="imagePicker"
-            accept="image/*"
-            required
-            class="w-full border p-3 rounded-lg cursor-pointer"
-          />
-
-          <img
-            id="imagePreview"
-            class="w-full max-h-64 object-cover rounded-lg shadow hidden"
-          />
-
-          <!-- This hidden field will store the Base64 image -->
-          <input type="hidden" id="imageUrl" required />
-        </div>
-
-        <!-- TIMES + DIFFICULTY -->
-        <div class="grid grid-cols-3 gap-4">
+      <div class="flex flex-col md:flex-row gap-8" id="parent">
+        <div id="left-child" class="flex-1 space-y-6">
+          <!-- TITLE -->
           <div>
-            <label class="font-semibold">Prep Time (min)</label>
-            <input
-              type="number"
-              id="prepTime"
-              min="1"
-              value="15"
-              required
-              class="w-full p-3 border rounded-lg"
-            />
+            <label class="block font-semibold mb-1">Recipe Title</label>
+            <input type="text" id="title" required
+              class="w-full p-3 border rounded-lg focus:ring-orange-400 focus:border-orange-400" />
           </div>
 
-          <div>
-            <label class="font-semibold">Cook Time (min)</label>
-            <input
-              type="number"
-              id="cookTime"
-              min="0"
-              value="30"
-              required
-              class="w-full p-3 border rounded-lg"
-            />
+          <!-- IMAGE PICKER ONLY -->
+          <div class="space-y-3">
+            <label class="block font-semibold">Recipe Image</label>
+
+            <input type="file" id="imagePicker" accept="image/*" required
+              class="w-full border p-3 rounded-lg cursor-pointer" />
+
+            <img id="imagePreview" class="w-full max-h-64 object-cover rounded-lg shadow hidden" />
+
+            <!-- This hidden field will store the Base64 image -->
+            <input type="hidden" id="imageUrl" required />
           </div>
 
-          <div>
-            <label class="font-semibold">Difficulty</label>
-            <input
-              type="range"
-              id="difficulty"
-              min="1"
-              max="5"
-              value="3"
-              oninput="this.nextElementSibling.value=this.value"
-              class="w-full"
-            />
-            <output class="block text-center font-semibold">3</output>
+          <!-- TIMES + DIFFICULTY -->
+          <div class="grid grid-cols-3 gap-4">
+            <div>
+              <label class="font-semibold">Prep Time (min)</label>
+              <input type="number" id="prepTime" min="1" value="15" required class="w-full p-3 border rounded-lg" />
+            </div>
+
+            <div>
+              <label class="font-semibold">Cook Time (min)</label>
+              <input type="number" id="cookTime" min="0" value="30" required class="w-full p-3 border rounded-lg" />
+            </div>
+
+            <div>
+              <label class="font-semibold">Difficulty</label>
+              <input type="range" id="difficulty" min="1" max="5" value="3"
+                oninput="this.nextElementSibling.value=this.value" class="w-full" />
+              <output class="block text-center font-semibold">3</output>
+            </div>
           </div>
         </div>
 
-        <!-- INGREDIENTS -->
-        <div class="bg-gray-50 p-4 rounded-lg">
-          <label class="text-xl font-semibold text-gray-800 mb-3 block">
-            Ingredients
-          </label>
+        <div id="right-child" class="flex-1 space-y-6">
+          <!-- INGREDIENTS -->
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <label class="text-xl font-semibold text-gray-800 mb-3 block">
+              Ingredients
+            </label>
 
-          <div class="flex gap-2 mb-3">
-            <input
-              type="text"
-              id="ingredient-input"
-              placeholder="Add ingredient..."
-              class="flex-1 p-2 border rounded-lg"
-            />
-            <button
-              type="button"
-              id="add-ingredient-btn"
-              class="bg-orange-500 text-white px-4 rounded-lg"
-            >
-              Add
-            </button>
+            <div class="flex gap-2 mb-3">
+              <input type="text" id="ingredient-input" placeholder="Add ingredient..."
+                class="flex-1 p-2 border rounded-lg" />
+              <button type="button" id="add-ingredient-btn" class="bg-orange-500 text-white px-4 rounded-lg">
+                Add
+              </button>
+            </div>
+
+            <div id="ingredients-list" class="flex flex-wrap gap-2"></div>
+
+            <input type="hidden" id="ingredients-hidden" required />
           </div>
 
-          <div id="ingredients-list" class="flex flex-wrap gap-2"></div>
+          <!-- STEPS -->
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <label class="text-xl font-semibold text-gray-800 mb-3 block">
+              Steps
+            </label>
 
-          <input type="hidden" id="ingredients-hidden" required />
-        </div>
+            <div class="flex gap-2 mb-3">
+              <input type="text" id="step-input" placeholder="Add step..." class="flex-1 p-2 border rounded-lg" />
+              <button type="button" id="add-step-btn" class="bg-orange-500 text-white px-4 rounded-lg">
+                Add
+              </button>
+            </div>
 
-        <!-- STEPS -->
-        <div class="bg-gray-50 p-4 rounded-lg">
-          <label class="text-xl font-semibold text-gray-800 mb-3 block">
-            Steps
-          </label>
+            <ol id="steps-list" class="list-decimal pl-5 space-y-1"></ol>
 
-          <div class="flex gap-2 mb-3">
-            <input
-              type="text"
-              id="step-input"
-              placeholder="Add step..."
-              class="flex-1 p-2 border rounded-lg"
-            />
-            <button
-              type="button"
-              id="add-step-btn"
-              class="bg-orange-500 text-white px-4 rounded-lg"
-            >
-              Add
-            </button>
+            <input type="hidden" id="steps-hidden" required />
           </div>
-
-          <ol id="steps-list" class="list-decimal pl-5 space-y-1"></ol>
-
-          <input type="hidden" id="steps-hidden" required />
         </div>
+      </div>
 
-        <button
-          type="submit"
-          class="bg-orange-500 text-white px-6 py-3 rounded-lg w-full font-semibold text-lg"
-        >
-          Save Recipe
-        </button>
-      </form>
+
+
+      <button type="submit" class="bg-orange-500 text-white px-6 py-3 rounded-lg w-full font-semibold text-lg">
+        Save Recipe
+      </button>
+    </form>
+  </div>
+  <footer class="fixed bottom-0 left-0 w-full border-t bg-white shadow-md">
+    <div class="container mx-auto flex flex-col items-center justify-between px-6 py-4 lg:flex-row">
+      <a href="#" class="flex items-center gap-2">
+        <i class="ph-book-open text-orange-500 text-xl"></i>
+      </a>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 mt-4 lg:gap-6 lg:mt-0">
+        <a href="contact.html" class="text-sm text-gray-700 transition-colors duration-200 hover:text-black">
+          İletişim
+        </a>
+      </div>
+
+      <p class="mt-4 text-sm text-gray-600 lg:mt-0">© 2025 My Recipe Book</p>
     </div>
+  </footer>
+  <script type="module" src="scripts/main.js"></script>
+  <script type="module" src="scripts/add.js"></script>
+</body>
 
-    <script type="module" src="scripts/main.js"></script>
-    <script type="module" src="scripts/add.js"></script>
-  </body>
 </html>
