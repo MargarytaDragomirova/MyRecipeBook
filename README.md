@@ -1,4 +1,4 @@
-#MyRecipeBook
+#MyRecipeBook#
 
 Günümüzde yemek tarifleri, farklı platformlarda dağınık şekilde paylaşıldığından kullanıcıların
 aradıkları tarife hızlı biçimde ulaşmaları zorlaşmaktadır. Bu nedenle “My Recipe Book” adlı
