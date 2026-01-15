@@ -1,3 +1,6 @@
+Google Drive linki: https://drive.google.com/drive/folders/
+1q_XenAZ9BtMSmYa39Tyo57LVYkvmZNmH?usp=share_link
+
 # MyRecipeBook
 
 Günümüzde yemek tarifleri, farklı platformlarda dağınık şekilde paylaşıldığından kullanıcıların
